@@ -26,6 +26,7 @@ string gender = "male";
 Console.WriteLine("You are " + gender + " and look younger than " + age + ".\n");
 
 // Exercise 5
+Console.Write("Enter seconds for conversion: ");
 int initialSeconds = int.Parse(Console.ReadLine());
 int seconds = initialSeconds;
 
@@ -49,5 +50,6 @@ TimeSpan ts = TimeSpan.FromSeconds(initialSeconds);
 Console.WriteLine(initialSeconds + " seconds is equal to: " + ts.Days / 365 + " years, " + ts.Days + " days, " + ts.Hours + " hours and " + ts.Minutes + " minutes.\n");
 
 // Exercise 7
+Console.Write("Enter the temperature in Celcius to be converted: ");
 float celcius = float.Parse(Console.ReadLine());
-Console.WriteLine(celcius + " degrees celcius is roughly equal to " + (celcius * 33.8) + " Fahreneit and " + (274.15 * celcius) + " Kelvin.");
+Console.WriteLine(celcius + " degrees celcius is roughly equal to " + ((celcius * 1.8) + 32) + " Fahreneit and " + (celcius + 273.15 ) + " Kelvin.");
