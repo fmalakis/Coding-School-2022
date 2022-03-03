@@ -8,11 +8,11 @@ namespace Session_03
 {
     internal class Schedule
     {
-        private Guid ID { get; }
+        public Guid ID { get; }
 
-        private Guid CourseID { get; }
-        private Guid ProfessorID { get; }
-        private DateTime Calendar { get; }
+        public Guid CourseID { get; }
+        public Guid ProfessorID { get; }
+        public DateTime Calendar { get; }
 
         public Schedule(Guid _CourseID, Guid _professorID, DateTime _Calendar)
         {

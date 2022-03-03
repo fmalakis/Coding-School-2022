@@ -8,11 +8,11 @@ namespace Session_03
 {
     internal class Course
     {
-        private Guid ID { get; }
+        public Guid ID { get; }
 
-        private string Code { get; }
+        public string Code { get; }
 
-        private string Subject { get; }
+        public string Subject { get; }
 
         public Course(string _code, string _subject)
         {

@@ -8,9 +8,9 @@ namespace Session_03
 {
     internal class Institute
     {
-        private Guid ID { get; }
-        private string Name;
-        private ushort YearsInService { get; }
+        public Guid ID { get; }
+        public string Name;
+        public ushort YearsInService { get; }
 
         public Institute(string _name, ushort _yearsInService)
         {

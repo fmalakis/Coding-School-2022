@@ -8,9 +8,9 @@ namespace Session_03
 {
     internal class Person
     {
-        private Guid Id { get; }
-        protected string Name;
-        private ushort Age { get; set; }
+        public Guid Id { get; }
+        public string Name;
+        public ushort Age { get; set; }
 
         public Person(string _name, ushort _age)
         {

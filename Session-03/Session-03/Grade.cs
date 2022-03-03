@@ -8,11 +8,11 @@ namespace Session_03
 {
     internal class Grade
     {
-        private Guid ID { get; }
+        public Guid ID { get; }
 
-        private Guid StudentId { get; }
-        private Guid CourseId { get; }
-        private ushort GradeScore { get; }
+        public Guid StudentId { get; }
+        public Guid CourseId { get; }
+        public ushort GradeScore { get; }
 
         public Grade(Guid _studentId, Guid _courseId, ushort _gradeScore)
         {

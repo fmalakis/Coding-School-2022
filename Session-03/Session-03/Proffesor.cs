@@ -10,9 +10,9 @@ namespace Session_03
     {
         private ushort courseIndex;
 
-        private string Rank { get; }
+        public string Rank { get; }
 
-        private Course[] Courses { get; }
+        public Course[] Courses { get; }
 
         public Proffesor(string _name, ushort _age, string _rank) : base(_name, _age)
         {

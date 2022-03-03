@@ -10,9 +10,9 @@ namespace Session_03
     {
         private ushort coursesIndex;
 
-        private int RegistrationNumber { get; }
+        public int RegistrationNumber { get; }
 
-        private Course[] Courses { get; }
+        public Course[] Courses { get; }
 
         public Student(string _name, ushort _age) : base(_name, _age)
         {
