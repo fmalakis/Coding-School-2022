@@ -28,11 +28,14 @@ namespace Session_03
                 return;
 
             Courses[courseIndex++] = _course;
+
+            // needs additional code added once a University field is added
         }
 
-        public void SetGrade(Student student, string courseId, float grade)
+        public void SetGrade(string studentID, string courseId, Grade grade)
         {
-            // This method will be updated as soon as a University field is added to the class
+            // This method will be updated as soon as a University field is added to the class,
+            // so that it can communicate with the Grades array in the University class
         }
 
         public string GetName()

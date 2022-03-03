@@ -26,11 +26,13 @@ namespace Session_03
                 return;
 
             Courses[coursesIndex++] = course;
+
+            // more code shall be added when a University field is added 
         }
 
         public void WriteExam(Course course, DateTime dateTime)
         {
-
+            // doesn't do nothing yet, maybe with future additions to University class
         }
     }
 }
