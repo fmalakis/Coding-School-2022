@@ -28,15 +28,15 @@ namespace Session_04
 
         public int ParseUserInputInt()
         {
-            int input = Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
 
-            while (input == null)
+            while (input == null || input == string.Empty)
             {
-                Console.Write("Please enter a number: ");
-                input = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Please enter a valid number: ");
+                input = Console.ReadLine();
             }
 
-            return input;
+            return Convert.ToInt32(input);
         }
 
         public ushort ParseUserChoice()
