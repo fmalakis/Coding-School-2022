@@ -8,6 +8,10 @@ namespace Session_04
 {
     internal class InputParser
     {
+
+        private const ushort SUM_CHOICE = 1;
+        private const ushort PROD_CHOICE = 2;
+
         public InputParser()
         {
           
@@ -43,7 +47,7 @@ namespace Session_04
         {
             string choice = Console.ReadLine();
 
-            while (choice == null || choice == string.Empty || (Convert.ToInt32(choice) != 1 && Convert.ToInt32(choice) != 2))
+            while (choice == null || choice == string.Empty || (Convert.ToInt32(choice) != SUM_CHOICE && Convert.ToInt32(choice) != PROD_CHOICE))
             {
                 Console.Write("Please enter a valid choice: ");
                 choice = Console.ReadLine();
