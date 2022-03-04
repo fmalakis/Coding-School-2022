@@ -11,6 +11,7 @@ Exercize1 exercize1 = new Exercize1();
 Console.WriteLine($"{inputString} revered is: {exercize1.ReverseString(inputString)}\n");
 
 // Exercize 2
+Exercize2 exercize2 = new Exercize2();
 
 Console.Write("Please enter a number n: ");
 int n = inputParser.ParseUserInputInt();
@@ -18,7 +19,6 @@ int n = inputParser.ParseUserInputInt();
 Console.Write("Please enter (1) for sum or (2) for product: ");
 ushort choice = inputParser.ParseUserChoice();
 
-Exercize2 exercize2 = new Exercize2();
 Console.WriteLine($"The result of the computation was: {exercize2.ComputeResult(n, choice)}\n");
 
 // Exercize 3
