@@ -16,7 +16,7 @@ Exercize2 exercize2 = new Exercize2();
 Console.Write("Please enter a number n: ");
 int n = inputParser.ParseUserInputInt();
 
-Console.Write("Please enter (1) for sum or (2) for product: ");
+Console.Write($"Please enter ({ValidUserChoices.SUM_CHOICE}) for sum or ({ValidUserChoices.PROD_CHOICE}) for product: ");
 ushort choice = inputParser.ParseUserChoice();
 
 Console.WriteLine($"The result of the computation was: {exercize2.ComputeResult(n, choice)}\n");

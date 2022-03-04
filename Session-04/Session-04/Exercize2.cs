@@ -28,7 +28,7 @@ namespace Session_04
 
             for (int i = 1; i <= n; i++)
             {
-                if (choice == 1)
+                if (choice == ValidUserChoices.SUM_CHOICE)
                     result += i;
                 else
                     result *= i;
