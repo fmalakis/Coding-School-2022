@@ -18,7 +18,7 @@ namespace Session_04
 
             int result;
 
-            if (choice == 1)
+            if (choice == ValidUserChoices.SUM_CHOICE)
             {
                 result = 0;
             } else
