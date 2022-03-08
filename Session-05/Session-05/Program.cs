@@ -10,7 +10,7 @@ messageLogger.ReadAll();
 Console.WriteLine($"Request1: {request1.ID}, {request1.Input}, {request1.Action}");
 Console.WriteLine($"Response1: {response1.ID}, {response1.RequestID}, {response1.Output}");
 
-ActionRequest request2 = new ActionRequest("this a fucking test   lol.", ActionType.Uppercase);
+ActionRequest request2 = new ActionRequest("this a test   lol.", ActionType.Uppercase);
 ActionResponse response2 = actionResolver.Execute(request2);
 messageLogger.ReadAll();
 Console.WriteLine($"Request1: {request2.ID}, {request2.Input}, {request2.Action}");
