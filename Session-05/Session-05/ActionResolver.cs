@@ -18,7 +18,7 @@ namespace Session_05
         public override ActionResponse Execute(ActionRequest actionRequest)
         {
 
-            string result = string.Empty;
+            string result;
 
             switch (actionRequest.Action)
             {
@@ -40,52 +40,5 @@ namespace Session_05
 
             return new ActionResponse(actionRequest.ID, result);
         }
-
-        private string FloatToBinary(string input)
-        {
-            if (!Decimal.TryParse(input, out var result))
-                return "ERROR: Input is not a decimal";
-
-            return BitConverter.GetBytes(Convert.ToDouble(input))
-            .Reverse()
-            .Select(x => Convert.ToString(x, 2))
-            .Select(x => x.PadLeft(8, '0'))
-            .Aggregate((a, b) => a + b);  
-        }
-
-        private string LongestWordToUpercase(string input)
-        {
-            string[] splitWords = input.Split(' ');
-
-            if (splitWords.Length < 2)
-                return "ERROR: Input doesn't have more than 1 word.";
-
-            int maxIndex = 0;
-            int maxLength = splitWords[0].Length;
-
-            for (int i = 1; i < splitWords.Length; i++)
-            {
-                if (splitWords[i].Length > maxLength)
-                {
-                    maxIndex = i;
-                    maxLength = splitWords[i].Length;
-                }
-                    
-            }
-
-            splitWords[maxIndex] = splitWords[maxIndex].ToUpper();
-
-            return string.Join(" ", splitWords);
-
-        }
-
-        private string ReverseString(string input)
-        {
-            if (input.Length > 0)
-                return input[input.Length - 1] + ReverseString(input.Substring(0, input.Length - 1));
-            else
-                return input;
-        }
-
     }
 }

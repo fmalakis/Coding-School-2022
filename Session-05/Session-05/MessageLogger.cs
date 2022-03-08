@@ -19,7 +19,7 @@ namespace Session_05
         public void ReadAll()
         {
             for (int i = 0; i < messageIndex; i++)
-                Console.WriteLine($"{i}) ID: {Messages[i].ID}, TimeStamp: {Messages[i].TimeStamp}, Body: {Messages[i].MessageBody}");
+                Console.WriteLine($"{i+1}) ID: {Messages[i].ID}, TimeStamp: {Messages[i].TimeStamp}, Body: {Messages[i].MessageBody}");
         }
 
         public void Clear()

@@ -4,7 +4,7 @@ MessageLogger messageLogger = new MessageLogger(10);
 ActionResolver actionResolver = new ActionResolver(messageLogger);
 
 
-ActionRequest request1 = new ActionRequest("35.17", ActionType.Convert);
+ActionRequest request1 = new ActionRequest("34785", ActionType.Convert);
 ActionResponse response1 = actionResolver.Execute(request1);
 messageLogger.ReadAll();
 Console.WriteLine($"Request1: {request1.ID}, {request1.Input}, {request1.Action}");
@@ -29,7 +29,7 @@ ActionResponse response4 = actionResolver.Execute(request4);
 Console.WriteLine($"Request4: {request4.ID}, {request4.Input}, {request4.Action}");
 Console.WriteLine($"Response4: {response4.ID}, {response4.RequestID}, {response4.Output}");
 
-ActionRequest request5 = new ActionRequest("this", ActionType.Convert);
+ActionRequest request5 = new ActionRequest("this32131", ActionType.Convert);
 ActionResponse response5 = actionResolver.Execute(request5);
 Console.WriteLine($"Request5: {request5.ID}, {request5.Input}, {request5.Action}");
 Console.WriteLine($"Response5: {response5.ID}, {response5.RequestID}, {response5.Output}");
