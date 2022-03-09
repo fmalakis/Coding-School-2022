@@ -8,7 +8,7 @@ namespace Session_06
 
         private string firstNum, secondNum, result;
         private bool dotPresent;
-        private ArithmeticalOperation arithmeticalOperation;
+        private ArithmeticalOperation arithmeticalOperation = ArithmeticalOperation.NOOP;
         private ArithmeticalOperationResolver resolver;
         private ArithmeticOperationLogger logger;
 
@@ -162,7 +162,7 @@ namespace Session_06
 
         private void buttonDot_Click(object sender, EventArgs e)
         {
-            if (!dotPresent)
+            if (!dotPresent && !this.resultTextBox.Text.Contains(','))
             {
                 this.resultTextBox.Text += (this.resultTextBox.Text == string.Empty? "0" : "") + ",";
                 dotPresent = true;
@@ -269,6 +269,9 @@ namespace Session_06
             this.resultTextBox.Text = result;
 
             logAction();
+
+
+            arithmeticalOperation = ArithmeticalOperation.NOOP;
 
             //this.lockCalculator();
         }
