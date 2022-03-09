@@ -17,12 +17,7 @@
             return a - b;
         }
 
-        public static float Subtract(int a, float b)
-        {
-            return a - b;
-        }
-
-        public static float Subtract(float a, float b)
+        public static double Subtract(double a, double b)
         {
             return a - b;
         }
@@ -30,11 +25,8 @@
         {
             return a * b;
         }
-        public static float Multiply(int a, float b)
-        {
-            return a * b;
-        }
-        public static float Multiply(float a, float b)
+       
+        public static double Multiply(double a, double b)
         {
             return a * b;
         }
@@ -43,11 +35,8 @@
         {
             return a / (float)b;
         }
-        public static float Divide(int a, float b)
-        {
-            return a / b;
-        }
-        public static float Divide(float a, float b)
+        
+        public static double Divide(double a, double b)
         {
             return a / b;
         }
@@ -55,11 +44,8 @@
         {
             return Math.Pow(a, b);
         }
-        public static double Power(int a, float b)
-        {
-            return Math.Pow(a, b);
-        }
-        public static double Power(float a, float b)
+        
+        public static double Power(double a, double b)
         {
             return Math.Pow(a, b);
         }

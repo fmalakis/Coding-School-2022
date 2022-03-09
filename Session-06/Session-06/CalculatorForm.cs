@@ -1,4 +1,4 @@
-using static Calculator.Operations;
+using Calculator;
 
 
 namespace Session_06
@@ -8,12 +8,17 @@ namespace Session_06
 
         private string firstNum, secondNum, result;
         private bool dotPresent;
+        private ArithmeticalOperation arithmeticalOperation;
+        private ArithmeticalOperationResolver resolver;
+        private ArithmeticOperationLogger logger;
 
         public CalculatorForm()
         {
             InitializeComponent();
             firstNum = secondNum = result = string.Empty;
             dotPresent = false;
+            resolver = new ArithmeticalOperationResolver();
+            logger = new ArithmeticOperationLogger();
         }
 
         private void clearResultTextBox()
@@ -24,6 +29,19 @@ namespace Session_06
         private void clearTempTextBox()
         {
             this.tempTextBox.Clear();
+        }
+
+        private void lockCalculator()
+        {
+            this.button0.Enabled = false;
+            this.button1.Enabled = false;
+            this.button2.Enabled = false;
+            this.button3.Enabled = false;
+        }
+
+        private void refreshLog()
+        {
+            this.logTextBox.Text = logger.FetchMessages();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -46,9 +64,20 @@ namespace Session_06
 
         }
 
-        private void button12_Click(object sender, EventArgs e)
+        private void buttonSub_Click(object sender, EventArgs e)
         {
+            if (resultTextBox.Text == string.Empty)
+                return;
 
+            firstNum = this.resultTextBox.Text;
+
+            arithmeticalOperation = ArithmeticalOperation.Subtract;
+
+            this.tempTextBox.Text += firstNum + " - ";
+
+            this.clearResultTextBox();
+
+            dotPresent = false;
         }
 
         private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
@@ -63,7 +92,7 @@ namespace Session_06
 
         private void button10_Click(object sender, EventArgs e)
         {
-            if (this.resultTextBox.Text != String.Empty)
+            if (this.resultTextBox.Text != String.Empty || this.arithmeticalOperation == ArithmeticalOperation.Power)
                 this.resultTextBox.Text += "0";
         }
 
@@ -109,7 +138,13 @@ namespace Session_06
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+
+            if (resultTextBox.Text == string.Empty)
+                return;
+
             firstNum = this.resultTextBox.Text;
+
+            arithmeticalOperation = ArithmeticalOperation.Add;
 
             this.tempTextBox.Text += firstNum + " + ";
 
@@ -128,12 +163,80 @@ namespace Session_06
                 
         }
 
+        private void buttonSqrt_Click(object sender, EventArgs e)
+        {
+
+            if (this.resultTextBox.Text == String.Empty)
+                return;
+
+            firstNum = this.resultTextBox.Text;
+
+            arithmeticalOperation = ArithmeticalOperation.Root;
+
+            result = resolver.Execute(arithmeticalOperation, firstNum);
+
+
+            this.tempTextBox.Text = $"Sqrt({firstNum}) = ";
+
+            this.resultTextBox.Text = result;
+        }
+
+        private void buttonMultiply_Click(object sender, EventArgs e)
+        {
+            if (resultTextBox.Text == string.Empty)
+                return;
+
+            firstNum = this.resultTextBox.Text;
+
+            arithmeticalOperation = ArithmeticalOperation.Multiply;
+
+            this.tempTextBox.Text = firstNum + " * ";
+
+            this.clearResultTextBox();
+
+            dotPresent = false;
+        }
+
+        private void buttonDivide_Click(object sender, EventArgs e)
+        {
+            if (resultTextBox.Text == string.Empty)
+                return;
+
+            firstNum = this.resultTextBox.Text;
+
+            arithmeticalOperation = ArithmeticalOperation.Divide;
+
+            this.tempTextBox.Text = firstNum + " / ";
+
+            this.clearResultTextBox();
+
+            dotPresent = false;
+        }
+
+        private void buttonPow_Click(object sender, EventArgs e)
+        {
+            if (resultTextBox.Text == string.Empty)
+                return;
+
+            firstNum = this.resultTextBox.Text;
+
+            arithmeticalOperation = ArithmeticalOperation.Power;
+
+            this.tempTextBox.Text = firstNum + " ^ ";
+
+            this.clearResultTextBox();
+
+            dotPresent = false;
+        }
+
         private void buttonReset_Click(object sender, EventArgs e)
         {
             this.clearResultTextBox();
             this.clearTempTextBox();
 
             firstNum = secondNum = result = string.Empty;
+
+            arithmeticalOperation = ArithmeticalOperation.NOOP;
 
             dotPresent= false;
 
@@ -148,17 +251,19 @@ namespace Session_06
             if (firstNum == String.Empty)
                 return;
 
-            if (Int32.TryParse(firstNum, out int result1) && Int32.TryParse(secondNum, out int result2)) 
-                result = Convert.ToString(Calculator.Operations.Add(result1, result2));
-            else
-                result = Convert.ToString(Calculator.Operations.Add(Convert.ToDouble(firstNum), Convert.ToDouble(secondNum)));
+
+            result = resolver.Execute(arithmeticalOperation, firstNum, secondNum);
 
 
             this.tempTextBox.Text += secondNum + " = ";
 
             this.resultTextBox.Text = result;
-            
 
+            logger.Write(new OperationMessage(arithmeticalOperation, tempTextBox.Text + result));
+
+            refreshLog();
+
+            //this.lockCalculator();
         }
     }
 }
