@@ -35,8 +35,8 @@ namespace Calculator
 
             foreach (var msg in operationMessages)
             {
-                ret += "--------------" + Environment.NewLine;
                 ret += $"ID: {msg.ID} | TimeStamp: {msg.TimeStamp} | Operation: {msg.ArithmeticalOperation} | {msg.Text}" + Environment.NewLine;
+                ret += "--------------" + Environment.NewLine;
             }
 
             return ret;

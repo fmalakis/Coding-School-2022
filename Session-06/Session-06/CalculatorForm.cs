@@ -39,6 +39,13 @@ namespace Session_06
             this.button3.Enabled = false;
         }
 
+        private void logAction()
+        {
+            logger.Write(new OperationMessage(arithmeticalOperation, tempTextBox.Text + result));
+
+            refreshLog();
+        }
+
         private void refreshLog()
         {
             this.logTextBox.Text = logger.FetchMessages();
@@ -73,7 +80,7 @@ namespace Session_06
 
             arithmeticalOperation = ArithmeticalOperation.Subtract;
 
-            this.tempTextBox.Text += firstNum + " - ";
+            this.tempTextBox.Text = firstNum + " - ";
 
             this.clearResultTextBox();
 
@@ -146,7 +153,7 @@ namespace Session_06
 
             arithmeticalOperation = ArithmeticalOperation.Add;
 
-            this.tempTextBox.Text += firstNum + " + ";
+            this.tempTextBox.Text = firstNum + " + ";
 
             this.clearResultTextBox();
 
@@ -179,6 +186,8 @@ namespace Session_06
             this.tempTextBox.Text = $"Sqrt({firstNum}) = ";
 
             this.resultTextBox.Text = result;
+
+            logAction();
         }
 
         private void buttonMultiply_Click(object sender, EventArgs e)
@@ -259,9 +268,7 @@ namespace Session_06
 
             this.resultTextBox.Text = result;
 
-            logger.Write(new OperationMessage(arithmeticalOperation, tempTextBox.Text + result));
-
-            refreshLog();
+            logAction();
 
             //this.lockCalculator();
         }
