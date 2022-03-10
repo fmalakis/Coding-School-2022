@@ -1,4 +1,6 @@
-﻿namespace UniversityLogic
+﻿using System;
+
+namespace UniversityLogic
 {
     public class Person
     {
