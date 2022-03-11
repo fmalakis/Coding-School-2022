@@ -16,6 +16,7 @@ namespace Session_07
 
         public Student newStudent { get; set; }
         public Student CurrentStudent { get; }
+        public List<Course> currentStudentCourses = new List<Course>();
 
         private Student studentClone;
 
@@ -83,6 +84,7 @@ namespace Session_07
                 if (CurrentStudent == null)
                 {
                     this.newStudent = new Student(this.txtboxName.Text, Convert.ToInt32(this.txtboxAge.Text), Convert.ToInt32(this.txtboxID.Text));
+                    newStudent.courses = this.currentStudentCourses;
                     edit = false;
                 } 
                 else
@@ -90,6 +92,7 @@ namespace Session_07
                     CurrentStudent.Name = this.txtboxName.Text;
                     CurrentStudent.Age = Convert.ToInt32(this.txtboxAge.Text);
                     CurrentStudent.RegistrationNumber = Convert.ToInt32(this.txtboxID.Text);
+                    CurrentStudent.courses = this.currentStudentCourses;
                     edit = true;
                 }
 
@@ -187,7 +190,7 @@ namespace Session_07
 
         private void addEntry(Course course)
         {
-            CurrentStudent.courses.Add(course);
+            currentStudentCourses.Add(course);
             this.lstboxCourses.Items.Add($"Code: {course.Code} | Subject: {course.Subject}");
         }
 

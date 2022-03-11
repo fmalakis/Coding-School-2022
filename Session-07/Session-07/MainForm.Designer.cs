@@ -46,6 +46,14 @@
             this.btnEditProf = new DevExpress.XtraEditors.SimpleButton();
             this.btnRemoveProf = new DevExpress.XtraEditors.SimpleButton();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
+            this.layoutControl3 = new DevExpress.XtraLayout.LayoutControl();
+            this.layoutControlGroup2 = new DevExpress.XtraLayout.LayoutControlGroup();
+            this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
+            this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.btnCourseRemove = new DevExpress.XtraEditors.SimpleButton();
+            this.btnEditCourse = new DevExpress.XtraEditors.SimpleButton();
+            this.btnNewCourse = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
@@ -60,6 +68,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.lstboxProf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            this.xtraTabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).BeginInit();
+            this.layoutControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -67,13 +81,14 @@
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
             this.xtraTabControl1.Size = new System.Drawing.Size(800, 450);
             this.xtraTabControl1.TabIndex = 0;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
             this.xtraTabPage2,
             this.xtraTabPage3});
+            this.xtraTabControl1.Click += new System.EventHandler(this.xtraTabControl1_Click);
             // 
             // xtraTabPage1
             // 
@@ -179,6 +194,7 @@
             this.lstboxProf.Size = new System.Drawing.Size(774, 343);
             this.lstboxProf.StyleController = this.layoutControl2;
             this.lstboxProf.TabIndex = 4;
+            this.lstboxProf.SelectedIndexChanged += new System.EventHandler(this.lstboxProf_SelectedIndexChanged);
             // 
             // layoutControlGroup1
             // 
@@ -206,6 +222,7 @@
             this.btnAddProf.Size = new System.Drawing.Size(123, 49);
             this.btnAddProf.TabIndex = 3;
             this.btnAddProf.Text = "Add new";
+            this.btnAddProf.Click += new System.EventHandler(this.btnAddProf_Click);
             // 
             // btnEditProf
             // 
@@ -214,6 +231,7 @@
             this.btnEditProf.Size = new System.Drawing.Size(123, 49);
             this.btnEditProf.TabIndex = 2;
             this.btnEditProf.Text = "Edit";
+            this.btnEditProf.Click += new System.EventHandler(this.btnEditProf_Click);
             // 
             // btnRemoveProf
             // 
@@ -222,12 +240,86 @@
             this.btnRemoveProf.Size = new System.Drawing.Size(123, 49);
             this.btnRemoveProf.TabIndex = 1;
             this.btnRemoveProf.Text = "Remove";
+            this.btnRemoveProf.Click += new System.EventHandler(this.btnRemoveProf_Click);
             // 
             // xtraTabPage3
             // 
+            this.xtraTabPage3.Controls.Add(this.btnNewCourse);
+            this.xtraTabPage3.Controls.Add(this.btnEditCourse);
+            this.xtraTabPage3.Controls.Add(this.btnCourseRemove);
+            this.xtraTabPage3.Controls.Add(this.layoutControl3);
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(798, 425);
             this.xtraTabPage3.Text = "Courses";
+            // 
+            // xtraTabPage4
+            // 
+            this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Size = new System.Drawing.Size(798, 425);
+            // 
+            // layoutControl3
+            // 
+            this.layoutControl3.Controls.Add(this.listBoxControl1);
+            this.layoutControl3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.layoutControl3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControl3.Name = "layoutControl3";
+            this.layoutControl3.Root = this.layoutControlGroup2;
+            this.layoutControl3.Size = new System.Drawing.Size(798, 366);
+            this.layoutControl3.TabIndex = 0;
+            this.layoutControl3.Text = "layoutControl3";
+            // 
+            // layoutControlGroup2
+            // 
+            this.layoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.True;
+            this.layoutControlGroup2.GroupBordersVisible = false;
+            this.layoutControlGroup2.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
+            this.layoutControlItem3});
+            this.layoutControlGroup2.Name = "layoutControlGroup2";
+            this.layoutControlGroup2.Size = new System.Drawing.Size(798, 366);
+            this.layoutControlGroup2.TextVisible = false;
+            // 
+            // listBoxControl1
+            // 
+            this.listBoxControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxControl1.Location = new System.Drawing.Point(12, 12);
+            this.listBoxControl1.Name = "listBoxControl1";
+            this.listBoxControl1.Size = new System.Drawing.Size(774, 342);
+            this.listBoxControl1.StyleController = this.layoutControl3;
+            this.listBoxControl1.TabIndex = 4;
+            this.listBoxControl1.SelectedIndexChanged += new System.EventHandler(this.listBoxControl1_SelectedIndexChanged);
+            // 
+            // layoutControlItem3
+            // 
+            this.layoutControlItem3.Control = this.listBoxControl1;
+            this.layoutControlItem3.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem3.Name = "layoutControlItem3";
+            this.layoutControlItem3.Size = new System.Drawing.Size(778, 346);
+            this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem3.TextVisible = false;
+            // 
+            // btnCourseRemove
+            // 
+            this.btnCourseRemove.Location = new System.Drawing.Point(673, 372);
+            this.btnCourseRemove.Name = "btnCourseRemove";
+            this.btnCourseRemove.Size = new System.Drawing.Size(122, 50);
+            this.btnCourseRemove.TabIndex = 1;
+            this.btnCourseRemove.Text = "Remove";
+            // 
+            // btnEditCourse
+            // 
+            this.btnEditCourse.Location = new System.Drawing.Point(545, 372);
+            this.btnEditCourse.Name = "btnEditCourse";
+            this.btnEditCourse.Size = new System.Drawing.Size(122, 50);
+            this.btnEditCourse.TabIndex = 2;
+            this.btnEditCourse.Text = "Edit";
+            // 
+            // btnNewCourse
+            // 
+            this.btnNewCourse.Location = new System.Drawing.Point(417, 372);
+            this.btnNewCourse.Name = "btnNewCourse";
+            this.btnNewCourse.Size = new System.Drawing.Size(122, 50);
+            this.btnNewCourse.TabIndex = 3;
+            this.btnNewCourse.Text = "Add new";
             // 
             // MainForm
             // 
@@ -253,6 +345,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.lstboxProf)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            this.xtraTabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControl3)).EndInit();
+            this.layoutControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -277,6 +375,14 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraEditors.ListBoxControl lstboxProf;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
+        private DevExpress.XtraLayout.LayoutControl layoutControl3;
+        private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup2;
+        private DevExpress.XtraEditors.ListBoxControl listBoxControl1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
+        private DevExpress.XtraEditors.SimpleButton btnCourseRemove;
+        private DevExpress.XtraEditors.SimpleButton btnEditCourse;
+        private DevExpress.XtraEditors.SimpleButton btnNewCourse;
     }
 }
 

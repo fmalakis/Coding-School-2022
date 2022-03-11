@@ -30,7 +30,7 @@ namespace UniversityLogic
 
         public bool Update(Student student)
         {
-            Student std = Students.FirstOrDefault(x => x.RegistrationNumber == student.RegistrationNumber);
+            Student std = Students.FirstOrDefault(x => x.ID == student.ID);
             if (std == null)
                 return false;
 

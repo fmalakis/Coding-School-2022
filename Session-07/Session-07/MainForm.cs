@@ -18,16 +18,23 @@ namespace Session_07
     {
 
         private StudentManager studentManager;
-
         private StudentManager studentManagerClone;
-
         private Student currentStudent;
+
+        private ProfessorManager professorManager;
+        private Professor currentProfessor;
+
+        private CourseManager courseManager;
+
         private int currentIndex;
+        private int currentProfIndex;
 
         public MainForm()
         {
             InitializeComponent();
             studentManager = new StudentManager();
+            professorManager = new ProfessorManager();
+            courseManager = new CourseManager();
 
             if (lstboxStudents.SelectedIndex == -1)
             {
@@ -35,16 +42,24 @@ namespace Session_07
                 this.btnRemove.Enabled = false;
             }
 
-            if (File.Exists("students.json"))
+            if (DataLoader.FetchStudents(out List<Student> students))
             {
-                string jsonString = File.ReadAllText("students.json");
-                studentManager.Students = JsonConvert.DeserializeObject<List<Student>>(jsonString);
+                studentManager.Students = students;
+            }
+
+            if (DataLoader.FetchProfessors(out List<Professor> professors))
+            {
+                professorManager.Professors = professors;
+            }
+
+            if (DataLoader.FetchCourses(out List<Course> courses))
+            {
+                courseManager.Courses = courses;
             }
 
             studentManagerClone = studentManager.Clone();
 
 
-            //populateTable();
             updateListBox();
         }
 
@@ -73,12 +88,29 @@ namespace Session_07
 
         #endregion
 
-        private void populateTable()
+        private void checkAndUpdateBtns()
         {
-            this.studentManager.Add(new Student("Fotis", 21, 1));
-            this.studentManager.Add(new Student("Giannis", 41, 2));
-            this.studentManager.Add(new Student("Lmao", 23, 3));
+            if (lstboxStudents.SelectedIndex == -1)
+            {
+                this.btnEdit.Enabled = false;
+                this.btnRemove.Enabled = false;
+            }
+            else
+            {
+                this.btnEdit.Enabled = true;
+                this.btnRemove.Enabled = true;
+            }
 
+            if (lstboxProf.SelectedIndex == -1)
+            {
+                this.btnEditProf.Enabled = false;
+                this.btnRemoveProf.Enabled = false;
+            }
+            else
+            {
+                this.btnEditProf.Enabled = true;
+                this.btnRemoveProf.Enabled = true;
+            }
         }
 
         private void updateListBox()
@@ -86,6 +118,11 @@ namespace Session_07
             foreach (Student item in studentManager.Students)
             {
                 this.lstboxStudents.Items.Add($"Name: {item.Name} | Age: {item.Age} | Registration Number: {item.RegistrationNumber}");
+            }
+
+            foreach (Professor professor in professorManager.Professors)
+            {
+                lstboxProf.Items.Add($"Name: {professor.Name} | Rank: {professor.Rank} | Age: {professor.Age} ");
             }
         }
 
@@ -150,11 +187,8 @@ namespace Session_07
 
         private void saveDataToDisk()
         {
-
-
-
-            string studentJson = JsonConvert.SerializeObject(studentManager.Students);
-            File.WriteAllText("students.json", studentJson);
+            DataLoader.SaveStudents(studentManager.Students);
+            DataLoader.SaveProfessors(professorManager.Professors);
         }
 
         private void savePrompt()
@@ -172,16 +206,63 @@ namespace Session_07
 
         private void lstboxStudents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstboxStudents.SelectedIndex == -1)
+            checkAndUpdateBtns();
+        }
+
+        private void xtraTabControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lstboxProf_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            checkAndUpdateBtns();
+
+            //currentProfIndex = lstboxProf.SelectedIndex;
+            //currentProfessor = professorManager.Professors[currentProfIndex];
+        }
+
+        private void btnAddProf_Click(object sender, EventArgs e)
+        {
+            ProfessorForm professorForm = new ProfessorForm();
+
+            if (professorForm.ShowDialog() == DialogResult.OK)
             {
-                this.btnRemove.Enabled = false;
-                this.btnEdit.Enabled = false;
+
+                currentProfessor = professorForm.CurrentProfessor;
+
+                professorManager.Add(currentProfessor);
+                lstboxProf.Items.Add($"Name: {currentProfessor.Name} | Rank: {currentProfessor.Rank} | Age: {currentProfessor.Age} ");
             }
-            else
+        }
+
+        private void btnEditProf_Click(object sender, EventArgs e)
+        {
+            ProfessorForm professorForm = new ProfessorForm(currentProfessor);
+
+            if (professorForm.ShowDialog() == DialogResult.OK)
             {
-                this.btnRemove.Enabled = true;
-                this.btnEdit.Enabled = true;
+                currentProfessor = professorForm.CurrentProfessor;
+
+                professorManager.Update(currentProfessor);
+
+                lstboxProf.Items[currentIndex] = $"Name: {currentProfessor.Name} | Rank: {currentProfessor.Rank} | Age: {currentProfessor.Age} ";
+
             }
+        }
+
+        private void btnRemoveProf_Click(object sender, EventArgs e)
+        {
+            currentProfIndex = lstboxProf.SelectedIndex;
+            currentProfessor = professorManager.Professors[currentProfIndex];
+            professorManager.Remove(currentProfessor);
+            lstboxProf.Items.RemoveAt(currentProfIndex);
+        }
+
+        private void listBoxControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

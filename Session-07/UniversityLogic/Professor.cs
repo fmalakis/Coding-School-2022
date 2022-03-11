@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniversityLogic
 {
-    internal class Professor : Person
+    public class Professor : Person
     {
         public string Rank { get; set; }
         public List<Course> courses { get; }
