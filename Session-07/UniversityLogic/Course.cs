@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UniversityLogic
 {
-    internal class Course
+    public class Course
     {
         public Guid Id { get; }
         public string Code { get; }

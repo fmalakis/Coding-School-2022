@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace UniversityLogic
 {
-    internal class Student : Person
+    public class Student : Person
     {
-        public int RegistrationNumber { get; }
+        public int RegistrationNumber { get; set; }
 
-        public List<Course> courses;
+        public List<Course> courses { get; set; }
 
         public Student(string _Name, int _Age, int _RegistrationNumber) : base(_Name,_Age)
         {
