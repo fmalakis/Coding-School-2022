@@ -18,12 +18,25 @@ namespace UniversityLogic
             RegistrationNumber = _RegistrationNumber;
         }
 
+        public Student Clone()
+        {
+            return (Student)MemberwiseClone();
+        }
+
         public void Attend(Course course, DateTime dateTime)
         {
             if (course == null)
                 return;
 
             courses.Add(course);
+        }
+
+        public bool Compare(Student student)
+        {
+            return this.Name == student.Name
+                && this.ID == student.ID
+                && this.RegistrationNumber == student.RegistrationNumber
+                && this.Age == student.Age;
         }
     }
 }

@@ -8,9 +8,9 @@ namespace UniversityLogic
 {
     public class Course
     {
-        public Guid Id { get; }
-        public string Code { get; }
-        public string Subject { get; }
+        public Guid Id { get; set; }
+        public string Code { get; set; }
+        public string Subject { get; set; }
 
         public Course(string _Code, string _Subject)
         {

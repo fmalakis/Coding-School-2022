@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +14,37 @@ using UniversityLogic;
 
 namespace Session_07
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
 
         private StudentManager studentManager;
 
+        private StudentManager studentManagerClone;
+
         private Student currentStudent;
         private int currentIndex;
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             studentManager = new StudentManager();
-            populateTable();
+
+            if (lstboxStudents.SelectedIndex == -1)
+            {
+                this.btnEdit.Enabled =  false;
+                this.btnRemove.Enabled = false;
+            }
+
+            if (File.Exists("students.json"))
+            {
+                string jsonString = File.ReadAllText("students.json");
+                studentManager.Students = JsonConvert.DeserializeObject<List<Student>>(jsonString);
+            }
+
+            studentManagerClone = studentManager.Clone();
+
+
+            //populateTable();
             updateListBox();
         }
 
@@ -65,7 +85,7 @@ namespace Session_07
         {
             foreach (Student item in studentManager.Students)
             {
-                this.lstboxStudents.Items.Add($"Name: {item.Name} | Age: {item.Age} | ID: {item.RegistrationNumber}");
+                this.lstboxStudents.Items.Add($"Name: {item.Name} | Age: {item.Age} | Registration Number: {item.RegistrationNumber}");
             }
         }
 
@@ -125,6 +145,42 @@ namespace Session_07
             {
                 updateEntry();
 
+            }
+        }
+
+        private void saveDataToDisk()
+        {
+
+
+
+            string studentJson = JsonConvert.SerializeObject(studentManager.Students);
+            File.WriteAllText("students.json", studentJson);
+        }
+
+        private void savePrompt()
+        {
+            if (MessageBox.Show("Do you want to save your changes?", "Save and exit", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                saveDataToDisk();
+            }
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            savePrompt();
+        }
+
+        private void lstboxStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstboxStudents.SelectedIndex == -1)
+            {
+                this.btnRemove.Enabled = false;
+                this.btnEdit.Enabled = false;
+            }
+            else
+            {
+                this.btnRemove.Enabled = true;
+                this.btnEdit.Enabled = true;
             }
         }
     }

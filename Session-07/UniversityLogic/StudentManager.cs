@@ -7,7 +7,7 @@ namespace UniversityLogic
 {
     public class StudentManager
     {
-        public List<Student> Students;
+        public List<Student> Students { get; set; }
 
         public StudentManager()
         {
@@ -36,6 +36,15 @@ namespace UniversityLogic
 
             std = student;
             return true;
+        }
+
+        public StudentManager Clone()
+        {
+
+            StudentManager clone = (StudentManager)MemberwiseClone();
+            clone.Students = this.Students; 
+
+            return clone;
         }
     }
 }
